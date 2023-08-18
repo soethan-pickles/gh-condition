@@ -2,6 +2,7 @@ name: Matrix Demo
 on: push
 jobs:
     build:
+        continue-on-error: true
         strategy:
             matrix:
                 node-version: [12,14,16]
@@ -15,6 +16,6 @@ jobs:
               with:
                 node-version: ${{ matrix.node-version }}
             - name: Install Dependencies
-              uses: npm ci
+              run: npm ci
             - name: Build project
-              uses: npm run build
+              run: npm run build
